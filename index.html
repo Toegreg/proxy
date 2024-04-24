@@ -6,15 +6,16 @@
   <title>HTML Proxy</title>
 </head>
 <body>
-  <button onclick="fetchUrl()">Go to Google</button>
+  <button onclick="fetchUrl()">Go to Google via Proxy</button>
   <div id="proxyResult"></div>
 
   <script>
     async function fetchUrl() {
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Using a CORS proxy service
       const googleUrl = 'https://www.google.com';
       try {
-        console.log('Redirecting to Google...');
-        const response = await fetch(googleUrl);
+        console.log('Fetching Google via proxy...');
+        const response = await fetch(proxyUrl + googleUrl);
         console.log('Response status:', response.status);
         const data = await response.text();
         document.getElementById('proxyResult').innerHTML = data;
